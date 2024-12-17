@@ -7,6 +7,7 @@ class MessageFieldBox extends StatelessWidget {
   Widget build(BuildContext context) {
 
     final textController = TextEditingController();
+    final focusNode =FocusNode();
 
     final outlineInputBorder = UnderlineInputBorder(
       borderSide: const BorderSide(color:Colors.transparent),
@@ -21,20 +22,26 @@ class MessageFieldBox extends StatelessWidget {
       suffixIcon: IconButton(
         icon: const Icon(Icons.send_outlined),
         onPressed: (){
-          print('Valor de la caja de texto');
+          final textValue= textController.value.text;
+          print('button: $textValue');
+          textController.clear();
         },
       )
     );
 
     return TextFormField(
+      onTapOutside: (event) {
+        focusNode.unfocus();
+      },
+      focusNode: focusNode,
       controller: textController,
       decoration: inputDecoration,
       onFieldSubmitted: (value) {
         print('submit value $value');
+        textController.clear();
+        focusNode.requestFocus();
       },
-      onChanged: (value) {
-        print('changed: $value');
-      },
+
     );
   }
 }
