@@ -10,7 +10,6 @@ const List<Color> _colorThemes=[
   Colors.yellow,
   Colors.orange,
   Colors.pink,
-  Colors.black,
 ];
 
 class AppTheme {
@@ -25,6 +24,7 @@ class AppTheme {
     return ThemeData(
       useMaterial3: true,
       colorSchemeSeed: _colorThemes[selectedColor],
+      brightness: Brightness.dark
     );
   }
 
